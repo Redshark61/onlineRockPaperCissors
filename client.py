@@ -1,13 +1,7 @@
 import pygame
 from network import Network
 from button import Buttons
-
-pygame.font.init()
-width = 700
-heigth = 700
-
-win = pygame.display.set_mode((width, heigth))
-pygame.display.set_caption("Client")
+import variables as var
 
 
 def redrawWindow(win, game, p):
@@ -16,7 +10,7 @@ def redrawWindow(win, game, p):
     if not game.connected():
         font = pygame.font.SysFont("comicsans", 80)
         text = font.render("Waiting for player", 1, (255, 0, 0), True)
-        win.blit(text, (width/2-text.get_width()/2, heigth/2-text.get_height()/2))
+        win.blit(text, (var.width/2-text.get_width()/2, var.height/2-text.get_height()/2))
     else:
         font = pygame.font.SysFont("comicsans", 60)
         text = font.render("Your move", 1, (0, 255, 255))
@@ -60,7 +54,7 @@ def redrawWindow(win, game, p):
 btns = [Buttons("Rock", 50, 500, (0, 0, 0)), Buttons("Paper", 250, 500, (255, 0, 0)), Buttons("Scissors", 450, 500, (0, 255, 0))]
 
 
-def main():
+def gameLoop(win):
     run = True
     clock = pygame.time.Clock()
     n = Network()
@@ -95,7 +89,7 @@ def main():
             else:
                 text = font.render("You lost!", 1, (255, 0, 0))
 
-            win.blit(text, (width / 2 - text.get_width() / 2, heigth / 2 - text.get_height() / 2))
+            win.blit(text, (var.width/2 - text.get_width()/2, var.height/2 - text.get_height()/2))
             pygame.display.update()
             pygame.time.delay(2000)
 
@@ -118,8 +112,10 @@ def main():
         redrawWindow(win, game, player)
 
 
-def menuScreeen():
+def menuScreeen(win):
     run = True
+    print(var.width)
+    print(var.height)
     clock = pygame.time.Clock()
 
     while run:
@@ -137,8 +133,4 @@ def menuScreeen():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 run = False
 
-    main()
-
-
-while True:
-    menuScreeen()
+    gameLoop(win)
