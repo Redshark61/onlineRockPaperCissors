@@ -24,7 +24,6 @@ idCount = 0
 def threadedClient(connection, p, gameID):
     global idCount
     connection.send(str.encode(str(p)))
-    reply = ""
 
     while True:
         try:
@@ -45,8 +44,8 @@ def threadedClient(connection, p, gameID):
             else:
                 break
 
-        except Exception as e:
-            print("Error : ", e)
+        except:
+            print("Error!")
             break
 
     print("Lost connection")

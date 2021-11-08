@@ -71,9 +71,9 @@ def main():
         clock.tick(60)
         try:
             game = n.send("get")
-        except Exception as e:
+        except:
             run = False
-            print("Couldn't get game error ", e)
+            print("Couldn't get game error ")
             break
 
         if game.bothWent():
@@ -81,9 +81,9 @@ def main():
             pygame.time.delay(500)
             try:
                 game = n.send("reset")
-            except Exception as e:
+            except:
                 run = False
-                print("Couldn't get game error ", e)
+                print("Couldn't get game error ")
                 break
 
             font = pygame.font.SysFont("comicsans", 90)
