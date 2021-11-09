@@ -3,7 +3,9 @@ import pickle
 from _thread import start_new_thread
 from game import Game
 
-server = socket.gethostbyname(socket.gethostname())
+server = socket.gethostbyname(socket.gethostname()).split('.')
+server[-1] = '1'
+server = '.'.join(server)
 port = 5555
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
