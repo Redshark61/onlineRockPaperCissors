@@ -10,7 +10,7 @@ def main():
 
 
 if __name__ == "__main__":
-
+    # Initalize everything
     pygame.font.init()
     variables.width = 700
     variables.height = 700
